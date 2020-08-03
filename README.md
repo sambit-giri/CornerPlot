@@ -4,7 +4,7 @@ A corner plotting routine for MCMC output in `python`. Requires `numpy` and `mat
 If you already have `numpy` and `matplotlib`, then install the package using `pip` by 
 running
 
-`pip install https://github.com/anguswilliams91/CornerPlot/archive/master.zip`
+`pip install https://github.com/sambit-giri/CornerPlot.git`
 
 The plotting function is also called `corner_plot` and has an informative docstring. 
 Below is an example output, where samples from a unit, isotropic Gaussian are plotted.
