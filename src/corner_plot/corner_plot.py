@@ -183,7 +183,7 @@ def corner_plot( chain, weights=None, axis_labels=None,  print_values=True, fnam
     hist_2d_axes = {}
 
     #Create axes for 2D histograms
-    for x_pos in xrange( n_traces - 1 ):
+    for x_pos in range( n_traces - 1 ):
         for y_pos in range( n_traces - 1 - x_pos  ):
             x_var = x_pos
             y_var = n_traces - 1 - y_pos
@@ -196,7 +196,7 @@ def corner_plot( chain, weights=None, axis_labels=None,  print_values=True, fnam
 
     #Create axes for 1D histograms
     hist_1d_axes = {}
-    for var in xrange( n_traces -1 ):
+    for var in range( n_traces -1 ):
         hist_1d_axes[var] = fig.add_subplot( gs[ (2*var):(2*var+2), 2*var:(2*var+2) ] )
         hist_1d_axes[var].xaxis.set_major_formatter(major_formatter)
         hist_1d_axes[var].yaxis.set_major_formatter(major_formatter)
@@ -206,19 +206,19 @@ def corner_plot( chain, weights=None, axis_labels=None,  print_values=True, fnam
 
 
     #Remove the ticks from the axes which don't need them
-    for x_var in xrange( n_traces -1 ):
-        for y_var in xrange( 1, n_traces - 1):
+    for x_var in range( n_traces -1 ):
+        for y_var in range( 1, n_traces - 1):
             try:
                 hist_2d_axes[(x_var,y_var)].xaxis.set_visible(False)
             except KeyError:
                 continue
-    for var in xrange( n_traces - 1 ):
+    for var in range( n_traces - 1 ):
         hist_1d_axes[var].set_xticklabels([])
         hist_1d_axes[var].xaxis.set_major_locator(MaxNLocator(nticks))
         hist_1d_axes[var].yaxis.set_visible(False)
 
-    for y_var in xrange( 1, n_traces ):
-        for x_var in xrange( 1, n_traces - 1):
+    for y_var in range( 1, n_traces ):
+        for x_var in range( 1, n_traces - 1):
             try:
                 hist_2d_axes[(x_var,y_var)].yaxis.set_visible(False)
             except KeyError:
@@ -230,7 +230,7 @@ def corner_plot( chain, weights=None, axis_labels=None,  print_values=True, fnam
 
     xplot = np.zeros( nbins*2 + 2 )
     yplot = np.zeros( nbins*2 + 2 )
-    for i in xrange(1, nbins * 2 + 1 ):
+    for i in range(1, nbins * 2 + 1 ):
         xplot[i] = walls[int((i-1)/2)]
         yplot[i] = vals[int((i-2)/2)]
 
@@ -271,8 +271,8 @@ def corner_plot( chain, weights=None, axis_labels=None,  print_values=True, fnam
 
 
     #Now Make the 2D histograms
-    for x_var in xrange( n_traces ):
-        for y_var in xrange( n_traces):
+    for x_var in range( n_traces ):
+        for y_var in range( n_traces):
             try:
                 H, y_edges, x_edges = np.histogram2d( traces[y_var][:num_samples], traces[x_var][:num_samples],\
                                                            weights=weights, bins = nbins )
@@ -309,7 +309,7 @@ def corner_plot( chain, weights=None, axis_labels=None,  print_values=True, fnam
 
             xplot = np.zeros( nbins*2 + 2 )
             yplot = np.zeros( nbins*2 + 2 )
-            for i in xrange(1, nbins * 2 + 1 ):
+            for i in range(1, nbins * 2 + 1 ):
                 xplot[i] = walls[int((i-1)/2)]
                 yplot[i] = vals[int((i-2)/2)]
 
@@ -335,12 +335,12 @@ def corner_plot( chain, weights=None, axis_labels=None,  print_values=True, fnam
                 hist_1d_axes[x_var].axvline(truths[x_var],ls='--',c='k',lw=truthlinewidth)
 
     #Finally Add the Axis Labels
-    for x_var in xrange(n_traces - 1):
+    for x_var in range(n_traces - 1):
         hist_2d_axes[(x_var, n_traces-1)].set_xlabel(axis_labels[x_var],fontsize=fontsize)
         hist_2d_axes[(x_var, n_traces-1)].tick_params(labelsize=tickfontsize)
         hist_2d_axes[(x_var, n_traces-1)].xaxis.set_major_locator(MaxNLocator(nticks))
         plt.setp(hist_2d_axes[(x_var, n_traces-1)].xaxis.get_majorticklabels(), rotation=45)
-    for y_var in xrange(1, n_traces ):
+    for y_var in range(1, n_traces ):
         hist_2d_axes[(0,y_var)].set_ylabel(axis_labels[y_var],fontsize=fontsize)
         hist_2d_axes[(0,y_var)].tick_params(labelsize=tickfontsize)
         plt.setp(hist_2d_axes[(0,y_var)].yaxis.get_majorticklabels(), rotation=45)
@@ -444,7 +444,7 @@ def multi_corner_plot(chains, weights=None, axis_labels=None, chain_labels=None,
 
     #Create axes for 2D histograms
     hist_2d_axes = {}
-    for x_pos in xrange( n_traces - 1 ):
+    for x_pos in range( n_traces - 1 ):
         for y_pos in range( n_traces - 1 - x_pos  ):
             x_var = x_pos
             y_var = n_traces - 1 - y_pos
@@ -457,7 +457,7 @@ def multi_corner_plot(chains, weights=None, axis_labels=None, chain_labels=None,
 
     #Create axes for 1D histograms
     hist_1d_axes = {}
-    for var in xrange( n_traces -1 ):
+    for var in range( n_traces -1 ):
         hist_1d_axes[var] = fig.add_subplot( gs[ (2*var):(2*var+2), 2*var:(2*var+2) ] )
         hist_1d_axes[var].xaxis.set_major_formatter(major_formatter)
         hist_1d_axes[var].yaxis.set_major_formatter(major_formatter)
@@ -468,19 +468,19 @@ def multi_corner_plot(chains, weights=None, axis_labels=None, chain_labels=None,
     for_legend = [None]*len(chains)
 
     #Remove the ticks from the axes which don't need them
-    for x_var in xrange( n_traces -1 ):
-        for y_var in xrange( 1, n_traces - 1):
+    for x_var in range( n_traces -1 ):
+        for y_var in range( 1, n_traces - 1):
             try:
                 hist_2d_axes[(x_var,y_var)].xaxis.set_visible(False)
             except KeyError:
                 continue
-    for var in xrange( n_traces - 1 ):
+    for var in range( n_traces - 1 ):
         hist_1d_axes[var].set_xticklabels([])
         hist_1d_axes[var].xaxis.set_major_locator(MaxNLocator(nticks))
         hist_1d_axes[var].yaxis.set_visible(False)
 
-    for y_var in xrange( 1, n_traces ):
-        for x_var in xrange( 1, n_traces - 1):
+    for y_var in range( 1, n_traces ):
+        for x_var in range( 1, n_traces - 1):
             try:
                 hist_2d_axes[(x_var,y_var)].yaxis.set_visible(False)
             except KeyError:
@@ -494,7 +494,7 @@ def multi_corner_plot(chains, weights=None, axis_labels=None, chain_labels=None,
 
         xplot = np.zeros( nbins[z]*2 + 2 )
         yplot = np.zeros( nbins[z]*2 + 2 )
-        for i in xrange(1, nbins[z] * 2 + 1 ):
+        for i in range(1, nbins[z] * 2 + 1 ):
             xplot[i] = walls[int((i-1)/2)]
             yplot[i] = vals[int((i-2)/2)]
 
@@ -525,8 +525,8 @@ def multi_corner_plot(chains, weights=None, axis_labels=None, chain_labels=None,
 
 
         #Now Make the 2D histograms
-        for x_var in xrange( n_traces ):
-            for y_var in xrange( n_traces):
+        for x_var in range( n_traces ):
+            for y_var in range( n_traces):
                 try:
                     H, y_edges, x_edges = np.histogram2d( traces[y_var][:num_samples], traces[x_var][:num_samples],\
                                                                weights=weights[z], bins = nbins[z] )
@@ -575,7 +575,7 @@ def multi_corner_plot(chains, weights=None, axis_labels=None, chain_labels=None,
 
                 xplot = np.zeros( nbins[z]*2 + 2 )
                 yplot = np.zeros( nbins[z]*2 + 2 )
-                for i in xrange(1, nbins[z] * 2 + 1 ):
+                for i in range(1, nbins[z] * 2 + 1 ):
                     xplot[i] = walls[int((i-1)/2)]
                     yplot[i] = vals[int((i-2)/2)]
 
@@ -604,12 +604,12 @@ def multi_corner_plot(chains, weights=None, axis_labels=None, chain_labels=None,
                         hist_1d_axes[x_var].axvline(truths[x_var],ls='--',c=truthcolor,lw=truthlinewidth,zorder=100)
 
     #Finally Add the Axis Labels
-    for x_var in xrange(n_traces - 1):
+    for x_var in range(n_traces - 1):
         hist_2d_axes[(x_var, n_traces-1)].set_xlabel(axis_labels[x_var],fontsize=fontsize)
         hist_2d_axes[(x_var, n_traces-1)].tick_params(labelsize=tickfontsize)
         hist_2d_axes[(x_var, n_traces-1)].xaxis.set_major_locator(MaxNLocator(nticks))
         plt.setp(hist_2d_axes[(x_var, n_traces-1)].xaxis.get_majorticklabels(), rotation=45)
-    for y_var in xrange(1, n_traces ):
+    for y_var in range(1, n_traces ):
         hist_2d_axes[(0,y_var)].set_ylabel(axis_labels[y_var],fontsize=fontsize)
         hist_2d_axes[(0,y_var)].tick_params(labelsize=tickfontsize)
         plt.setp(hist_2d_axes[(0,y_var)].yaxis.get_majorticklabels(), rotation=45)
